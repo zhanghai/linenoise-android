@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
+    defaultConfig {
+        applicationId 'me.zhanghai.android.linenoise.sample'
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        doNotStrip '**/libsample.so'
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':library')
+    implementation 'androidx.annotation:annotation:1.1.0'
+}

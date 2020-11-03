@@ -1,0 +1,13 @@
+#!/system/bin/sh
+PACKAGE_NAME=me.zhanghai.android.linenoise.sample
+class_path="$(pm path "${PACKAGE_NAME}")"
+class_path="${class_path#package:}"
+sdk_version="$(getprop ro.build.version.sdk)"
+if [ "$sdk_version" -gt "28" ]; then
+  java_options=" -XjdwpProvider:adbconnection"
+elif [ "$sdk_version" -eq "28" ]; then
+  java_options=" -XjdwpProvider:adbconnection -XjdwpOptions:suspend=n,server=y -Xcompiler-option --debuggable"
+else
+  java_options=" -Xrunjdwp:transport=dt_android_adb,suspend=n,server=y -Xcompiler-option --debuggable"
+fi
+CLASSPATH="${class_path}" /system/bin/app_process${java_options} /system/bin --nice-name="${PACKAGE_NAME}:shell" "${PACKAGE_NAME}.Main" "$@"

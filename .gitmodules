@@ -1,0 +1,3 @@
+[submodule "library/src/main/native/external/linenoise"]
+	path = library/src/main/native/external/linenoise
+	url = https://github.com/antirez/linenoise.git
