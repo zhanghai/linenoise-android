@@ -16,9 +16,9 @@ cmake_minimum_required(VERSION 3.10.2)
 
 # TCSAFLUSH fails on Android 8.0 to 11 due to SELinux denial, so use TCSADRAIN instead.
 # See also https://github.com/termux/termux-packages/issues/1359 .
-set(LINENOISE_C_INPUT src/main/native/external/linenoise/linenoise.c)
+set(LINENOISE_C_INPUT src/main/jni/external/linenoise/linenoise.c)
 set(LINENOISE_C_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/linenoise_patched.c")
-set(LINENOISE_C_PATCH src/main/native/linenoise.c.patch)
+set(LINENOISE_C_PATCH src/main/jni/linenoise.c.patch)
 find_package(Patch REQUIRED)
 add_custom_command(OUTPUT "${LINENOISE_C_OUTPUT}"
         COMMAND "${CMAKE_COMMAND}" -E copy "${LINENOISE_C_INPUT}" "${LINENOISE_C_OUTPUT}"
@@ -30,8 +30,8 @@ add_custom_command(OUTPUT "${LINENOISE_C_OUTPUT}"
         VERBATIM)
 
 add_library(linenoise STATIC "${LINENOISE_C_OUTPUT}")
-target_include_directories(linenoise PUBLIC src/main/native/external/linenoise)
+target_include_directories(linenoise PUBLIC src/main/jni/external/linenoise)
 
 find_library(LOG_LIBRARY log)
-add_library(linenoise-jni SHARED src/main/native/linenoise-jni.c)
+add_library(linenoise-jni SHARED src/main/jni/linenoise-jni.c)
 target_link_libraries(linenoise-jni linenoise ${LOG_LIBRARY})
