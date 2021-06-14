@@ -6,6 +6,10 @@
 
 This is not an officially supported Google product.
 
+## Why linenoise-android?
+
+Because `TCSAFLUSH` is broken on Android 8.0 - 11 and this broke all the line editing libraries I looked into. This library patched `Linenoise` to use `TCSADRAIN` instead, which is also what the Android bulit-in `mksh` is using, so that it can run on all Android versions. For more details about this issue, you may refer to [my blog post](https://blog.zhanghai.me/fixing-line-editing-on-android-8-0/).
+
 ## Integration
 
 Gradle:
