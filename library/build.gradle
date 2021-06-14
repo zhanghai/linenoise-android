@@ -33,10 +33,10 @@ dependencies {
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.15.1'
     }
 }
-apply from: '../bintray-android.gradle'
+apply plugin: 'com.vanniktech.maven.publish'
