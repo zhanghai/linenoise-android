@@ -15,7 +15,7 @@ Because `TCSAFLUSH` is broken on Android 8.0 - 11 and this broke all the line ed
 Gradle:
 
 ```gradle
-implementation 'me.zhanghai.android.linenoise:library:1.0.0'
+implementation 'me.zhanghai.android.linenoise:library:1.0.1'
 ```
 
 ## Usage
