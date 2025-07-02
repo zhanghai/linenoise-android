@@ -1,14 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
+    namespace 'me.zhanghai.android.linenoise.sample'
+    buildToolsVersion = '36.0.0'
+    compileSdk 36
     defaultConfig {
         applicationId 'me.zhanghai.android.linenoise.sample'
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 36
         versionCode Integer.parseInt(VERSION_CODE)
         versionName VERSION_NAME
+    }
+    buildFeatures {
+        buildConfig true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -28,5 +32,5 @@ android {
 
 dependencies {
     implementation project(':library')
-    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
 }

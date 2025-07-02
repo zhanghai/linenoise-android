@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
-    ndkVersion '22.1.7171670'
-    buildToolsVersion '30.0.3'
+    namespace 'me.zhanghai.android.linenoise'
+    buildToolsVersion = '36.0.0'
+    compileSdk 36
+    ndkVersion '28.1.13356709'
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 36
         versionCode Integer.parseInt(VERSION_CODE)
         versionName VERSION_NAME
         consumerProguardFiles 'proguard-rules.pro'
@@ -28,7 +29,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
 }
 
 apply plugin: 'com.vanniktech.maven.publish'

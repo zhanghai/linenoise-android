@@ -14,6 +14,17 @@
 
 cmake_minimum_required(VERSION 3.10.2)
 
+project(linenoise-android
+        LANGUAGES C)
+# CMAKE_INTERPROCEDURAL_OPTIMIZATION sets -fuse-ld=gold and -flto=thin.
+#set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+add_compile_options(
+        -fdata-sections
+        -ffunction-sections
+        -flto)
+add_link_options(
+        LINKER:--gc-sections)
+
 # TCSAFLUSH fails on Android 8.0 to 11 due to SELinux denial, so use TCSADRAIN instead.
 # See also https://github.com/termux/termux-packages/issues/1359 .
 set(LINENOISE_C_INPUT src/main/jni/external/linenoise/linenoise.c)
